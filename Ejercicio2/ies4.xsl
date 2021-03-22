@@ -4,12 +4,14 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:template match="/">
 <html>
     <body>
-        <pre><b>Nombre y Apellidos = David Rodriguez</b></pre>
+        <xsl:text>&#xA;</xsl:text>Nombre y Apellidos = David Rodriguez<xsl:text>&#xA;</xsl:text>
+        <ol>
         <xsl:for-each select="ies/ciclos/ciclo">
-        <ul>
+        
         <li><xsl:value-of select="nombre"/></li>
-    </ul>
+    
         </xsl:for-each>
+    </ol>
     </body>
 </html>
 

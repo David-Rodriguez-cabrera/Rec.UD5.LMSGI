@@ -4,8 +4,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:template match="/">
 <html>
     <body>
-        <pre><b>Nombre y Apellidos = David Rodriguez</b></pre>
-        <h1>IES Nuestra Sra. de los Remedios</h1>
+        <xsl:text>&#xA;</xsl:text>Nombre y Apellidos = David Rodriguez<xsl:text>&#xA;</xsl:text>
+        <h1><xsl:value-of select="ies/@nombre"/></h1>
         <table border="1">
             <tr>
             <th>Nombre</th>
@@ -14,43 +14,27 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         <xsl:for-each select="ies/ciclos/ciclo">
         
         <tr>
-
+            <td><xsl:value-of select="nombre"/></td>
             <xsl:choose>
-                <xsl:when test="@anio &gt; '2009'">
-                    <xsl:for-each select="decretoTitulo">
-       <td bgcolor="#23FF00">
-           
-           <xsl:value-of select="@anio"/>
-        </td>
-        </xsl:for-each>
-                    </xsl:when>
-
-                    <xsl:when test="@anio = '2009'">
-                        <xsl:for-each select="decretoTitulo">
-       <td bgcolor="#00FFF3">
-           <xsl:value-of select="@anio"/>
-        </td>
-        </xsl:for-each>
-                    </xsl:when>
-
-                    <xsl:when test="@anio &lt; '2009'">
-                        <xsl:for-each select="decretoTitulo">
-       <td bgcolor="#FF0000">
-           <xsl:value-of select="@anio"/>
-        </td>
-        </xsl:for-each>
-                    </xsl:when>
-
-                    <xsl:otherwise>
-                        <td><xsl:value-of select="nombre"/></td>
-                        <xsl:for-each select="decretoTitulo">
-       <td bgcolor="23FF00">
-           <xsl:value-of select="@anio"/>
-        </td>
-        </xsl:for-each>
-                    </xsl:otherwise>
-                    </xsl:choose>
-       
+                <xsl:when test="decretoTitulo/@anio &gt; 2009">
+                <td><font color ="#00FF00">
+                    <xsl:value-of select="decretoTitulo/@anio"/>
+                    </font>
+                </td>
+                </xsl:when>
+                <xsl:when test="decretoTitulo/@anio &lt; 2009">
+                <td><font color ="#FF0000">
+                    <xsl:value-of select="decretoTitulo/@anio"/>
+                    </font>
+                </td>
+                </xsl:when>
+                <xsl:when test="decretoTitulo/@anio =2009">
+                    <td><font color ="#0000FF">
+                        <xsl:value-of select="decretoTitulo/@anio"/>
+                        </font>
+                    </td>
+                </xsl:when>
+            </xsl:choose>
         </tr>
     
         </xsl:for-each>

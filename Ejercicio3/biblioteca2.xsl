@@ -3,12 +3,12 @@
 <xsl:template match="/">
 <xsl:text>&#xA;</xsl:text>Nombre y Apellidos = David Rodriguez<xsl:text>&#xA;</xsl:text>
     <ol>
-        <xsl:for-each select="bib/libro/autor">
-        <xsl:sort select="apellido"/>
+        <xsl:for-each select="bib/libro">
+        <xsl:if test="precio &lt; 100">
         <li>
-            <xsl:text>&#xA;</xsl:text><xsl:value-of select="apellido"/>,<xsl:value-of select="nombre"/><xsl:text>&#xA;</xsl:text>
+            <xsl:text>&#xA;</xsl:text><xsl:value-of select="titulo"/><xsl:text>&#xA;</xsl:text>
         </li>
-        
+    </xsl:if>
         </xsl:for-each>
     </ol>  
 </xsl:template>
